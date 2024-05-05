@@ -74,6 +74,10 @@ const config = {
         "gradient-mesh": "url('/icons/gradient-mesh.svg')",
         "bank-green-gradient":
           "linear-gradient(90deg, #01797A 0%, #489399 100%)",
+        "credit-card-gradient":
+          "linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, #FFFFFF 100%)",
+        "profile-banner-gradient":
+          "linear-gradient(135deg, #43CBFF 0%, #9708CC 100%)",
       },
       boxShadow: {
         form: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",

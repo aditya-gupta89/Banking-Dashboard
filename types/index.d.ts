@@ -28,17 +28,17 @@ declare type LoginUser = {
 declare type User = {
   $id: string;
   email: string;
-  userId: string;
-  dwollaCustomerUrl: string;
-  dwollaCustomerId: string;
+  userId?: string;
+  dwollaCustomerUrl?: string;
+  dwollaCustomerId?: string;
   firstName: string;
   lastName: string;
-  address1: string;
-  city: string;
-  state: string;
-  postalCode: string;
-  dateOfBirth: string;
-  ssn: string;
+  address1?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  dateOfBirth?: string;
+  ssn?: string;
 };
 
 declare type NewUserParams = {
@@ -80,6 +80,8 @@ declare type Transaction = {
   senderBankId: string;
   receiverBankId: string;
 };
+
+const transaction: Transaction = {};
 
 declare type Bank = {
   $id: string;
@@ -326,3 +328,101 @@ declare interface getBankProps {
 declare interface getBankByAccountIdProps {
   accountId: string;
 }
+
+const searchParamProps: SearchParamProps = {
+  params: {
+    key1: "value1",
+    key2: "value2",
+    key3: "value3",
+  },
+  searchParams: {
+    key1: "value1",
+    key2: ["value2", "value3"],
+    key3: undefined,
+  },
+};
+
+const signUpParams: SignUpParams = {
+  firstName: "John",
+  lastName: "Doe",
+  address1: "123 Main St",
+  city: "Anytown",
+  state: "CA",
+  postalCode: "12345",
+  dateOfBirth: "1990-01-01",
+  ssn: "123-45-6789",
+  email: "john@example.com",
+  password: "password123",
+};
+
+const loginUser: LoginUser = {
+  email: "john@example.com",
+  password: "password123",
+};
+
+const user: User = {
+  $id: "123456",
+  email: "john@example.com",
+  userId: "user123",
+  dwollaCustomerUrl: "https://www.dwolla.com/customers/user123",
+  dwollaCustomerId: "dwolla123",
+  firstName: "John",
+  lastName: "Doe",
+  address1: "123 Main St",
+  city: "Anytown",
+  state: "CA",
+  postalCode: "12345",
+  dateOfBirth: "1990-01-01",
+  ssn: "123-45-6789",
+};
+
+const newUserParams: NewUserParams = {
+  userId: "user123",
+  email: "john@example.com",
+  name: "John Doe",
+  password: "password123",
+};
+
+const account: Account = {
+  id: "acc123",
+  availableBalance: 1000,
+  currentBalance: 1500,
+  officialName: "Savings Account",
+  mask: "****1234",
+  institutionId: "inst123",
+  name: "My Savings",
+  type: "depository",
+  subtype: "savings",
+  appwriteItemId: "item123",
+  sharableId: "sharable123",
+};
+
+const transaction: Transaction = {
+  id: "trans123",
+  $id: "trans456",
+  name: "Payment",
+  paymentChannel: "online",
+  type: "debit",
+  accountId: "acc123",
+  amount: 50,
+  pending: false,
+  category: "Food and Drink",
+  date: "2024-05-05",
+  image: "transaction.jpg",
+  $createdAt: "2024-05-05",
+  channel: "web",
+  senderBankId: "bank123",
+  receiverBankId: "bank456",
+};
+
+const bank: Bank = {
+  $id: "bank123",
+  accountId: "acc123",
+  bankId: "bank456",
+  accessToken: "token123",
+  fundingSourceUrl: "https://www.example.com/funding-source",
+  userId: "user123",
+  sharableId: "sharable123",
+};
+
+// Dummy data for other types can be similarly created.
