@@ -40,7 +40,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
               src="/icons/logo.jpeg"
               width={40}
               height={40}
-              alt="Horizon logo"
+              alt="Swish logo"
             />
             <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
               Swish
