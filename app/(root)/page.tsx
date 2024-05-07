@@ -1,9 +1,11 @@
 import CurrentTotalBalance from "@/components/CurrentTotalBalance";
 import Header from "@/components/Header";
 import RightSidebar from "@/components/RightSidebar";
+import { getLoggedInUser } from "@/lib/actions/user-action";
 import React from "react";
 
-const Home = () => {
+const Home =async  () => {
+  const user = await getLoggedInUser();
   return (
     <section className="home">
       <div className="home-content">
@@ -11,7 +13,7 @@ const Home = () => {
           <Header
             type="greeting"
             title="Welcome,"
-            user={"Guest"}
+            user={user?.name||'Guest'}
             description="Access and manage your acco"
           />
           <CurrentTotalBalance
@@ -79,14 +81,9 @@ const Home = () => {
             type: "33",
             subtype: "saving",
             appwriteItemId: "33",
-          }
+          },
         ]}
-        user={{
-          $id: "23",
-          firstName: "Aditya",
-          lastName: "Gupta",
-          email: "aditya@thinkitive.com",
-        }}
+        user={user}
       />
     </section>
   );

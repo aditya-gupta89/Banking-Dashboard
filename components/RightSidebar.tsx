@@ -15,15 +15,13 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
         <div className="profile">
           <div className="profile-img">
             <span className="text-5xl font-bold text-blue-500">
-              {user.firstName[0]}
+              {user?.name[0] || ""}
             </span>
           </div>
 
           <div className="profile-details">
-            <h1 className="profile-name">
-              {user.firstName} {user.lastName}
-            </h1>
-            <p className="profile-email">{user.email}</p>
+            <h1 className="profile-name">{user?.name || ""}</h1>
+            <p className="profile-email">{user?.email || ""}</p>
           </div>
         </div>
       </section>
@@ -43,14 +41,14 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
               brand: "Mastercard",
               cardNumber: "5823 4492 2385 1102",
               expiryDate: "05/28",
-              holderName: "John Carter",
+              holderName: user?.name || "",
             },
             {
               id: "99f231b1c079b810ba66bef1",
               brand: "VISA",
               cardNumber: "3455 4562 7710 3507",
               expiryDate: "02/30",
-              holderName: "John Carter",
+              holderName: user?.name || "",
             },
           ]}
         />

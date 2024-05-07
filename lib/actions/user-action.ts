@@ -4,6 +4,7 @@
 import { createAdminClient, createSessionClient } from "../appwrite";
 import { ID } from "node-appwrite";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 export async function getLoggedInUser() {
   try {
     const { account } = await createSessionClient();
@@ -13,7 +14,23 @@ export async function getLoggedInUser() {
   }
 }
 
+export const signIn = async ({ email, password }: signInProps) => {
+  try {
+    const { account } = await createAdminClient();
+    const session = await account.createEmailPasswordSession(email, password);
 
+    cookies().set("appwrite-session", session.secret, {
+      path: "/",
+      httpOnly: true,
+      sameSite: "strict",
+      secure: true,
+    });
+
+    return session;
+  } catch (error) {
+    console.error("Error", error);
+  }
+};
 
 export const signUp = async ({ password, ...userData }: SignUpParams) => {
   const { email, firstName, lastName } = userData;
@@ -34,5 +51,18 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
     sameSite: "strict",
     secure: true,
   });
-  return newUserAccount;    
+  return newUserAccount;
+};
+
+export const logoutAccount = async () => {
+  try {
+    const { account } = await createSessionClient();
+    const user = account.get();
+    cookies().delete("appwrite-session");
+
+     await account.deleteSession("current");
+     return user;
+  } catch (error) {
+    return null;
+  }
 };

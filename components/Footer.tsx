@@ -1,9 +1,16 @@
+import { logoutAccount } from "@/lib/actions/user-action";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 
 const Footer = ({ user, type = "desktop" }: { user: any; type: string }) => {
   const router = useRouter();
+  const handleLogOut = async () => {
+    const loggedOut = await logoutAccount();
+    console.log('9',loggedOut)
+
+    if (loggedOut) router.push("/sign-in");
+  };
 
   return (
     <footer className="footer">
@@ -20,6 +27,9 @@ const Footer = ({ user, type = "desktop" }: { user: any; type: string }) => {
         <p className="text-14 truncate font-normal text-gray-600">
           {user?.email}
         </p>
+      </div>
+      <div className="footer_image" onClick={handleLogOut}>
+        <Image src="icons/logout.svg" fill alt="jsm" />
       </div>
     </footer>
   );
